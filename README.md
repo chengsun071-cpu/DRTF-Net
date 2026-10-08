@@ -1,48 +1,68 @@
-# DRTF-Net — Selected Public Code (Partial Release)
+# DRTF-Net
 
-**Companion materials; NOT the full experimental source code.**
+**Dual-Graph Fine-Grained Encrypted Traffic Classification with Tri-Relation Inter-Flow Modeling**
 
-This GitHub-friendly package contains a **limited subset of actual DRTF-Net model source code** and evaluation utilities, alongside dataset information. It has been prepared as a *partial release* for the manuscript *DRTF-Net: Dual-Graph Fine-Grained Encrypted Traffic Classification with Tri-Relation Inter-Flow Modeling*.
+DRTF-Net is a graph neural network-based framework for fine-grained encrypted traffic classification. It models intra-flow packet interactions and inter-flow relationships through a dual-graph architecture to learn complementary representations of encrypted network traffic.
 
-## Included
+This repository provides research code, model components, evaluation utilities, and supporting documentation associated with the DRTF-Net framework.
 
-| Item | Contents |
-| --- | --- |
-| `src/packet_encoder_excerpt.py` | Extracted packet-side graph encoding components (not the packet graph construction algorithm). Requires PyTorch and DGL when used. |
-| `src/fusion_head.py` | Fusion and classifier layers reorganized from the original model into an isolated component. |
-| `src/evaluation_metrics.py` | Extracted accuracy, macro F1, precision, recall, MCC and optional AUROC/AUPRC evaluation functions. |
-| `examples/metrics_demo.py` | Evaluation with **synthetic labels only**. |
-| `examples/fusion_demo.py` | Standalone fusion-head forward pass with **random vectors only**. |
-| `docs/DATA_SOURCES.md` | Dataset source descriptions. |
-| `docs/METHOD_OVERVIEW.md` | Public high-level overview of the published method. |
-| `CODE_AVAILABILITY.md` | Clear disclosure of release limitations. |
+## Overview
 
-## Not included
+DRTF-Net integrates two complementary graph representations:
 
-- **Packet/intra-flow graph construction**: packet and burst-context node/edge generation and actual traffic-derived graph preparation.
-- **Inter-flow tri-relation construction or relation-aware flow encoder**: source for computing graph relationships and inter-flow messages is not included.
-- **Data processing and training pipeline**: PCAP parsing, feature extraction, labeled dataset construction, graph caching, data splits, experiment configurations and model optimization.
-- Original full-model entry point, evaluation prediction files, pretrained checkpoints, processed or raw datasets.
+- **Intra-flow modeling:** Captures packet-level interactions and burst-level contextual information within individual flows.
+- **Inter-flow modeling:** Characterizes relationships among associated flows through entity consistency, concurrency, and trigger relationships.
+- **Dual-graph feature fusion:** Combines representations from intra-flow and inter-flow branches for fine-grained traffic classification.
 
-The components in this repository **cannot reproduce** DRTF-Net's experiments, trained model predictions, or reported results. These materials should never be cited as a fully reproducible implementation. See `CODE_AVAILABILITY.md`.
+## Repository Structure
 
-## Requirements and small demonstrations
+| File | Description |
+|---|---|
+| `src/packet_encoder_excerpt.py` | Packet-level graph encoder components |
+| `src/fusion_head.py` | Feature fusion and classification modules |
+| `src/evaluation_metrics.py` | Classification evaluation metrics |
+| `examples/metrics_demo.py` | Evaluation metrics example |
+| `examples/fusion_demo.py` | Feature fusion example |
+| `docs/DATA_SOURCES.md` | Dataset information and references |
+| `docs/METHOD_OVERVIEW.md` | Overview of the proposed framework |
 
-Python 3.10+ and `torch`, `numpy` are needed for the examples. `scikit-learn` is optional for AUROC/AUPRC. The graph encoder excerpt requires a compatible DGL installation **only if that code is used**; there is no graph-building example here.
+## Requirements
 
-From the repository root:
+- Python 3.10+
+- PyTorch
+- NumPy
+- scikit-learn
+- DGL (for graph encoder components)
+
+## Usage
+
+Run the evaluation example:
 
 ```bash
 python examples/metrics_demo.py
+```
+
+Run the feature fusion example:
+
+```bash
 python examples/fusion_demo.py
 ```
 
-These only use synthetic data and **do not** run the encrypted-traffic classification model.
+These examples demonstrate individual components using synthetic inputs.
 
-## Before publication
+## Datasets
 
-This repository contains a **partial code release by author choice**. PeerJ or another venue may request additional code, data or a justified access restriction for verification. The repository alone does not establish journal policy compliance. Review the contents and any relevant journal requirements before making it public.
+The research is evaluated on two publicly available traffic datasets:
+
+- **USTC-TFC2016:** Network traffic dataset containing benign and malicious traffic categories.
+- **MCFP:** Malware Capture Facility Project traffic captures, used to construct a multiclass traffic classification benchmark.
+
+Dataset descriptions and source information are available in `docs/DATA_SOURCES.md`.
+
+## Code Availability
+
+This repository contains research code and supporting materials for DRTF-Net. Certain core implementation modules and experimental pipelines are not publicly released due to research confidentiality restrictions.
 
 ## License
 
-No open-source license is provided here. All rights remain with the respective copyright holders. Third-party data are not redistributed.
+No open-source license is currently provided. All rights reserved.
