@@ -1,0 +1,23 @@
+# Keep unpublished/private research artifacts out of the repository
+*.pcap
+*.pcapng
+*.pcap.gz
+*.cap
+*.pt
+*.pth
+*.ckpt
+*.pickle
+*.pkl
+*.npy
+*.npz
+.env
+.env.*
+data/
+datasets/
+cache/
+checkpoints/
+outputs/
+runs_*/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
