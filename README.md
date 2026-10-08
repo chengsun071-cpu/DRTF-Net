@@ -1,68 +1,64 @@
 # DRTF-Net
 
-**Dual-Graph Fine-Grained Encrypted Traffic Classification with Tri-Relation Inter-Flow Modeling**
+**DRTF-Net: Fine-grained encrypted traffic classification via intra-flow and inter-flow dual-graph modeling**
 
-DRTF-Net is a graph neural network-based framework for fine-grained encrypted traffic classification. It models intra-flow packet interactions and inter-flow relationships through a dual-graph architecture to learn complementary representations of encrypted network traffic.
+DRTF-Net is a graph neural network framework for fine-grained encrypted traffic classification. The framework combines packet-level information within individual traffic flows with relationships among associated flows through a dual-graph architecture.
 
-This repository provides research code, model components, evaluation utilities, and supporting documentation associated with the DRTF-Net framework.
+This repository provides selected model components, evaluation utilities, and supporting research documentation for DRTF-Net.
 
 ## Overview
 
-DRTF-Net integrates two complementary graph representations:
+DRTF-Net uses complementary graph representations:
 
-- **Intra-flow modeling:** Captures packet-level interactions and burst-level contextual information within individual flows.
-- **Inter-flow modeling:** Characterizes relationships among associated flows through entity consistency, concurrency, and trigger relationships.
-- **Dual-graph feature fusion:** Combines representations from intra-flow and inter-flow branches for fine-grained traffic classification.
+- **Intra-flow modeling:** Captures packet interactions and burst-level context within each flow.
+- **Inter-flow modeling:** Describes entity consistency, concurrency, and trigger relationships among associated flows.
+- **Feature fusion:** Combines learned representations for fine-grained traffic classification.
 
 ## Repository Structure
 
-| File | Description |
-|---|---|
-| `src/packet_encoder_excerpt.py` | Packet-level graph encoder components |
-| `src/fusion_head.py` | Feature fusion and classification modules |
-| `src/evaluation_metrics.py` | Classification evaluation metrics |
-| `examples/metrics_demo.py` | Evaluation metrics example |
-| `examples/fusion_demo.py` | Feature fusion example |
-| `docs/DATA_SOURCES.md` | Dataset information and references |
-| `docs/METHOD_OVERVIEW.md` | Overview of the proposed framework |
+| Path | Description |
+| --- | --- |
+| `src/packet_encoder_excerpt.py` | Packet graph encoder components (expects a constructed graph) |
+| `src/fusion_head.py` | Feature fusion and classification components |
+| `src/evaluation_metrics.py` | Classification evaluation utilities |
+| `examples/metrics_demo.py` | Evaluation metrics demonstration |
+| `examples/fusion_demo.py` | Feature fusion demonstration |
+| `docs/DATA_SOURCES.md` | Dataset background and sources |
+| `docs/METHOD_OVERVIEW.md` | Overview of the framework |
+| `CODE_AVAILABILITY.md` | Code availability information |
 
 ## Requirements
 
 - Python 3.10+
 - PyTorch
 - NumPy
-- scikit-learn
+- scikit-learn (optional, for AUROC/AUPRC)
 - DGL (for graph encoder components)
 
 ## Usage
 
-Run the evaluation example:
+From the repository root, run:
 
 ```bash
 python examples/metrics_demo.py
-```
-
-Run the feature fusion example:
-
-```bash
 python examples/fusion_demo.py
 ```
 
-These examples demonstrate individual components using synthetic inputs.
+The examples use synthetic labels or random feature vectors to demonstrate the included components. They are not end-to-end traffic classification experiments.
 
 ## Datasets
 
-The research is evaluated on two publicly available traffic datasets:
+The associated study uses the following traffic datasets:
 
-- **USTC-TFC2016:** Network traffic dataset containing benign and malicious traffic categories.
-- **MCFP:** Malware Capture Facility Project traffic captures, used to construct a multiclass traffic classification benchmark.
+- **USTC-TFC2016:** Network traffic classification data covering benign and malicious traffic categories.
+- **Malware Capture Facility Project (MCFP):** Traffic captures used to construct a multiclass evaluation task.
 
-Dataset descriptions and source information are available in `docs/DATA_SOURCES.md`.
+Dataset information is provided in `docs/DATA_SOURCES.md`. No third-party traffic data are redistributed in this repository.
 
 ## Code Availability
 
-This repository contains research code and supporting materials for DRTF-Net. Certain core implementation modules and experimental pipelines are not publicly released due to research confidentiality restrictions.
+Some core research implementations and experimental processing pipelines are not publicly distributed due to research confidentiality considerations. See [`CODE_AVAILABILITY.md`](CODE_AVAILABILITY.md) for details on the available materials and their scope.
 
 ## License
 
-No open-source license is currently provided. All rights reserved.
+No open-source license is provided. All rights reserved.

@@ -1,11 +1,11 @@
-# Code availability — partial public release
+# Code Availability
 
-This repository shares selected graph encoder and fusion components from the original DRTF-Net model, selected evaluation functions, and dataset descriptions. It is **not** the complete code used to produce the manuscript results.
+**Related manuscript:** DRTF-Net: Fine-grained encrypted traffic classification via intra-flow and inter-flow dual-graph modeling
 
-The intra-flow graph builder, inter-flow relationship builder, relation-aware inter-flow learning code, traffic preprocessing, training/evaluation pipeline, model checkpoints, and processed datasets are not released here. Consequently the results reported in the manuscript **cannot be reproduced solely from this repository**.
+This repository shares selected graph encoding and feature fusion components, evaluation utilities, and dataset documentation associated with DRTF-Net.
 
-### Suggested accurate disclosure (confirm with the journal before using)
+Certain research implementations are not publicly released due to confidentiality considerations, including intra-flow graph construction, inter-flow relation construction and relation-aware encoding, data preprocessing, and the experimental training/evaluation pipelines. Model checkpoints and processed datasets are also not provided.
 
-> Selected model components, evaluation utilities, and dataset descriptions are publicly available at [insert GitHub repository URL]. The packet-graph construction, inter-flow relation implementations, and training/data processing pipeline are not publicly provided. As a result, the public materials do not constitute a complete implementation for reproducing the paper's results.
+The example scripts operate on synthetic inputs. Accordingly, the materials made available here are not sufficient on their own to recreate the complete model training procedure or reproduce the experimental results reported in the manuscript.
 
-**Important:** A limited code release may not satisfy PeerJ's applicable code and data policies. Do not present this as a full reproducibility package or claim a confidentiality/legal exemption unless that basis actually exists and is approved where necessary.
+The public release is described as such to make its scope clear. Whether the available materials satisfy any particular journal's code and data sharing requirements must be determined under that journal's policies.
